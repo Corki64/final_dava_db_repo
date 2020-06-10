@@ -12,9 +12,13 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(new App().getGreeting());
-	DB.demo();
-	DB.listUsers();
+//        System.out.println(new App().getGreeting());
+        menu();
+        command();
+
+
+//	DB.demo();
+//	DB.listUsers();
 
     }
 
