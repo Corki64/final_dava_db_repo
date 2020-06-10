@@ -38,6 +38,7 @@ public class App {
 
         Scanner input = new Scanner(System.in);
         result = input.nextInt();
+        String line = input.nextLine();
         if (result > 0 && result < 6) {
             switcher(result);
         } else {
