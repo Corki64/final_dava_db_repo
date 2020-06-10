@@ -3,6 +3,9 @@
  */
 package edu.au.cc.gallery.tools.UserAdmin;
 
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
 public class App {
     public String getGreeting() {
         return "Hello world.";
@@ -13,6 +16,56 @@ public class App {
 	DB.demo();
 	DB.listUsers();
 
+    }
+
+    private static void menu() {
+        System.out.println("\n\n--==**Menu**==--");
+        System.out.println("1)  List Users");
+        System.out.println("2)  Add User");
+        System.out.println("3)  Edit User");
+        System.out.println("4)  Delete User");
+        System.out.println("5)  Quit");
+        System.out.print("Enter command :> ");
+    }
+
+    private static void command() throws NoSuchElementException {
+
+        int result = 0;
+
+        Scanner input = new Scanner(System.in);
+        result = input.nextInt();
+        if (result > 0 && result < 6) {
+            switcher(result);
+        } else {
+            System.out.println("Invalid Command. Please try again.\n\n");
+            menu();
+            command();
+        }
 
     }
+
+    private static void switcher(int choiceIn) {
+        if (choiceIn == 1) {
+            try {
+                DB.demo();
+
+//                Db.listUsers();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            menu();
+            command();
+
+
+        } else if (choiceIn == 2 || choiceIn == 3 || choiceIn == 4 || choiceIn == 5) {
+        } else if (choiceIn == 2 || choiceIn == 3 || choiceIn == 4 || choiceIn == 5) {
+
+
+            System.exit(0);
+        }
+    }
+
+
+
+
 }
