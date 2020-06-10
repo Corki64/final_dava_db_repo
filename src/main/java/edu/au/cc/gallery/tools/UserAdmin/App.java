@@ -45,6 +45,14 @@ public class App {
 
         try {
             int inputInteger = Integer.parseInt(input.readLine());
+
+            if (result > 0 && result < 6) {
+                switcher(inputInteger);
+            } else {
+                System.out.println("Invalid Command. Please try again.\n\n");
+                menu();
+                command();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,13 +61,7 @@ public class App {
 //        String line = input.nextLine();
 //        result = input.nextInt();
 
-        if (result > 0 && result < 6) {
-            switcher(result);
-        } else {
-            System.out.println("Invalid Command. Please try again.\n\n");
-            menu();
-            command();
-        }
+
 
     }
 
