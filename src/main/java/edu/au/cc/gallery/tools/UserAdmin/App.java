@@ -3,6 +3,11 @@
  */
 package edu.au.cc.gallery.tools.UserAdmin;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.nio.Buffer;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -36,9 +41,17 @@ public class App {
 
         int result = 0;
 
-        Scanner input = new Scanner(System.in);
-        String line = input.nextLine();
-        result = input.nextInt();
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            int inputInteger = Integer.parseInt(input.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        Scanner input = new Scanner(System.in);
+//        String line = input.nextLine();
+//        result = input.nextInt();
 
         if (result > 0 && result < 6) {
             switcher(result);
