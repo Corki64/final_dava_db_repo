@@ -16,7 +16,7 @@ public class DB {
 	private static final String dbURL = "jdbc:postgresql://java-db.cqxj5v5xjbzr.us-east-2.rds.amazonaws.com/name_list";
 
 
-        private static Connection connection;
+        public static Connection connection;
 
 
 

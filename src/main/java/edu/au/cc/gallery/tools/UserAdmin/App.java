@@ -24,7 +24,7 @@ public class App {
 
     }
 
-    private static void menu() throws IOException {
+    public static void menu() throws IOException {
         System.out.println("\n\n--==**Menu**==--");
         System.out.println("1)  List Users");
         System.out.println("2)  Add User");
@@ -34,7 +34,7 @@ public class App {
         System.out.print("Enter command :> ");
     }
 
-    private static void command() throws NoSuchElementException, IOException {
+    public static void command() throws NoSuchElementException, IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int input = Integer.parseInt(br.readLine());
