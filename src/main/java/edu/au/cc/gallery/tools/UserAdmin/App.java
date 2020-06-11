@@ -50,23 +50,11 @@ public class App {
 //
 //        System.out.println("marker ::=" + input);
 
-        System.out.println("Name: ");
-        try{
-            BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-
-
-            String inputString;
-
-            while ((inputString = bufferRead.readLine()) == null) {
-                System.out.println("Name entered : " + inputString);
-
-            }
-
-        }
-        catch(IOException ex)
-        {
-            ex.printStackTrace();
-        }
+        InputStreamReader r=new InputStreamReader(System.in);
+        BufferedReader br=new BufferedReader(r);
+        System.out.println("Enter your name");
+        String name=br.readLine();
+        System.out.println("Welcome "+name);
 
     }
 
