@@ -75,7 +75,25 @@ public class App {
                 break;
 
             case 3:
+                try {
+                    DB db = new DB();
+                    db.editUser();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                menu();
+                command();
+                break;
             case 4:
+                try {
+                    DB db = new DB();
+                    db.deleteUser();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                menu();
+                command();
+                break;
             case 5:
                 System.exit(0);
         }
