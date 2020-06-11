@@ -54,7 +54,9 @@ public class App {
     public static void switcher(int choiceIn) throws IOException {
         if (choiceIn == 1) {
             try {
-                DB.listUsers();
+                DB db = new DB();
+
+                db.listUsers();
             } catch (Exception e) {
                 e.printStackTrace();
             }
