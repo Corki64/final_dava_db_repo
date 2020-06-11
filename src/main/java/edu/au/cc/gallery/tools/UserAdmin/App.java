@@ -36,15 +36,31 @@ public class App {
         System.out.println("5)  Quit");
         System.out.print("Enter command :> ");
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//
+//        var input = 0;
+//
+//        while (br.)
+//
+//        Integer.parseInt(br.readLine());
+//
+//
+//
+////        int input = Integer.parseInt(br.readLine());
+//
+//        System.out.println("marker ::=" + input);
 
-        var input = Integer.parseInt(br.readLine());
+        System.out.println("Name: ");
+        try{
+            BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+            String inputString = bufferRead.readLine();
 
-
-
-//        int input = Integer.parseInt(br.readLine());
-
-        System.out.println("marker ::=" + input);
+            System.out.println("Name entered : " + inputString);
+        }
+        catch(IOException ex)
+        {
+            ex.printStackTrace();
+        }
 
     }
 
