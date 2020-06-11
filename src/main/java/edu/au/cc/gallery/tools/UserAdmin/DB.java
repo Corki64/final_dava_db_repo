@@ -1,15 +1,16 @@
 package edu.au.cc.gallery.tools.UserAdmin;
 
-
-import org.postgresql.core.SqlCommand;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-
 import java.io.InputStreamReader;
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DB {
 	private static final String dbURL = "jdbc:postgresql://java-db.cqxj5v5xjbzr.us-east-2.rds.amazonaws.com/name_list";
@@ -92,7 +93,7 @@ public class DB {
 
 		PreparedStatement stmt = connection.prepareStatement("select '" + prefName + "' from users");
 		ResultSet rs = stmt.executeQuery();
-		String prefNameEdit, passWordEdit, fullNameEdit;
+		String prefNameEdit = null, passWordEdit = null, fullNameEdit = null;
 		while (rs.next()) {
 			prefNameEdit = rs.getString(1);
 			passWordEdit = rs.getString(2);
@@ -101,7 +102,7 @@ public class DB {
 		rs.close();
 		System.out.println(prefNameEdit + " | " + passWordEdit + " | "+ fullNameEdit);
 
-		String editOption;
+		String editOption = "";
 
 		while (editOption != null) {
 			System.out.println("1 ) Preferred Name");
@@ -111,15 +112,15 @@ public class DB {
 			System.out.println("Please select the field to edit :> ");
 			editOption = br.readLine();
 
-			if (editOption == "1") {
+			if (editOption.equals("1")) {
 				System.out.println("Current preferred name :>" + prefNameEdit);
 				System.out.print("Please enter new preferred name :> ");
 				prefNameEdit = br.readLine();
-			} else if (editOption == "2") {
+			} else if (editOption.equals("2")) {
 				System.out.println("Current password :> " + passWordEdit);
 				System.out.print("Please enter new password :> ");
 				passWordEdit = br.readLine();
-			} else if (editOption == "3") {
+			} else if (editOption.equals("3")) {
 				System.out.print("Current full name :>" + fullNameEdit);
 				fullNameEdit = br.readLine();
 			} else {
@@ -127,7 +128,7 @@ public class DB {
 			}
 		}
 		Statement updateStmt = connection.createStatement();
-		stmt.executeUpdate("update users " +
+		updateStmt.executeUpdate("update users " +
 				"set user_name = '" + prefNameEdit +"', set password = '" + passWordEdit +"', set full_name = '" + fullNameEdit + "' where user_name = '" +  prefName + "')");
 		db.close();
 	}
@@ -143,7 +144,6 @@ public class DB {
 		Statement deleteStmt = connection.createStatement();
 		deleteStmt.executeUpdate("delete from users where user_name = '" + prefName + "'");
 		db.close();
-
 	}
 
 
