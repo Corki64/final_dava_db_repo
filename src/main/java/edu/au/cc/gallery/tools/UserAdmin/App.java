@@ -37,7 +37,9 @@ public class App {
         System.out.print("Enter command :> ");
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String tmp = br.readLine();
         String input = br.readLine();
+
 
 //        int input = Integer.parseInt(br.readLine());
 
