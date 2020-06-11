@@ -1,16 +1,15 @@
 package edu.au.cc.gallery.tools.UserAdmin;
 
 
+import org.postgresql.core.SqlCommand;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.io.InputStreamReader;
+import java.sql.*;
 
 public class DB {
 	private static final String dbURL = "jdbc:postgresql://java-db.cqxj5v5xjbzr.us-east-2.rds.amazonaws.com/name_list";
@@ -52,7 +51,6 @@ public class DB {
 
 
 	public static void listUsers() throws SQLException {
-		System.out.println("i got this far");
 		DB db = new DB();
 		db.connect();
 
@@ -64,8 +62,42 @@ public class DB {
 					+ rs.getString(3));
 		}
 		rs.close();
+		db.close();
 	}
 
+	public static void addUser() throws SQLException, IOException {
+		DB db = new DB();
+		db.connect();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.print("Please enter the preferred name of the user :> ");
+		String prefName = br.readLine();
+		System.out.print("Please enter the password for user :> ");
+		String password = br.readLine();
+		System.out.print("Please enter user full name :> ");
+		String fullName = br.readLine();
+
+		Statement stmt = connection.createStatement();
+		stmt.executeUpdate("INSERT into users " + "values (" + prefName + ", " + password + ", " + fullName + ")");
+
+		db.close();
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void close() throws SQLException {
+		connection.close();
+	}
 
 
 

@@ -52,20 +52,32 @@ public class App {
     }
 
     public static void switcher(int choiceIn) throws IOException {
-        if (choiceIn == 1) {
-            try {
-                DB db = new DB();
+        switch (choiceIn) {
+            case 1:
+                try {
+                    DB db = new DB();
+                    db.listUsers();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                menu();
+                command();
+                break;
+            case 2:
+                try {
+                    DB db = new DB();
+                    db.addUser();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                menu();
+                command();
+                break;
 
-                db.listUsers();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            menu();
-            command();
-
-
-        } else if (choiceIn == 2 || choiceIn == 3 || choiceIn == 4 || choiceIn == 5) {
-            System.exit(0);
+            case 3:
+            case 4:
+            case 5:
+                System.exit(0);
         }
     }
 
