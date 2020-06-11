@@ -57,7 +57,7 @@ public class App {
 
             String inputString;
 
-            while ((inputString = bufferRead.readLine()) != null) {
+            while ((inputString = bufferRead.readLine()) == null) {
                 System.out.println("Name entered : " + inputString);
 
             }
