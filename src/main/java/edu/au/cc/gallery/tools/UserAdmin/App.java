@@ -37,7 +37,9 @@ public class App {
         System.out.print("Enter command :> ");
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int input = Integer.parseInt(br.readLine());
+        String input = br.readLine();
+
+//        int input = Integer.parseInt(br.readLine());
 
         System.out.println("marker ::=" + input);
 
