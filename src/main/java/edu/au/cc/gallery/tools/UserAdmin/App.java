@@ -12,9 +12,6 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
 
     public static void main(String[] args) throws Exception {
 //        System.out.println(new App().getGreeting());
@@ -54,7 +51,7 @@ public class App {
 
     }
 
-    private static void switcher(int choiceIn) throws IOException {
+    public static void switcher(int choiceIn) throws IOException {
         if (choiceIn == 1) {
             try {
                 DB.listUsers();
