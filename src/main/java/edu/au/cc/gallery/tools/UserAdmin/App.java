@@ -48,7 +48,7 @@ public class App {
 
         try {
 
-            while ((input = br.readLine()) != null)) {
+            while ((input = br.readLine()) != null) {
                 int inputInteger = Integer.parseInt(input);
                 if (result > 0 && result < 6) {
                     switcher(inputInteger);
