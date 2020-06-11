@@ -55,6 +55,7 @@ public class App {
 
         System.out.println("Please enter a sentence:" );
         String userInput = sc.nextLine();
+        System.out.println(userInput);
 
     }
 
