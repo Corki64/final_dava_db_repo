@@ -70,7 +70,7 @@ public class App {
 
     }
 
-    private static void switcher(int choiceIn) {
+    private static void switcher(int choiceIn) throws IOException {
         if (choiceIn == 1) {
             try {
                 DB.demo();
