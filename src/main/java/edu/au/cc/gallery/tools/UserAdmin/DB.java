@@ -78,7 +78,7 @@ public class DB {
 		String fullName = br.readLine();
 
 		Statement stmt = connection.createStatement();
-		stmt.executeUpdate("INSERT into users " + "values (" + prefName + ", " + password + ", " + fullName + ")");
+		stmt.executeUpdate("INSERT into users values ('" + prefName + "', '" + password + "', '" + fullName + "')");
 
 		db.close();
 	}
