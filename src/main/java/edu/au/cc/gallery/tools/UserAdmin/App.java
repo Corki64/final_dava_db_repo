@@ -50,12 +50,12 @@ public class App {
 //
 //        System.out.println("marker ::=" + input);
 
-        Scanner sc = new Scanner(System.in);
-        int userChoice;
-
-        System.out.println("Please enter a sentence:" );
-        String userInput = sc.nextLine();
-        System.out.println(userInput);
+        String word = "";
+        System.out.println("please enter a something");
+        Scanner scan = new Scanner(System.in);
+        if (scan.hasNextLine()) {
+            word = scan.nextLine();
+        }
 
     }
 
