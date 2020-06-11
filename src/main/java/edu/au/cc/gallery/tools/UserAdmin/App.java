@@ -50,11 +50,11 @@ public class App {
 //
 //        System.out.println("marker ::=" + input);
 
-        InputStreamReader r=new InputStreamReader(System.in);
-        BufferedReader br=new BufferedReader(r);
-        System.out.println("Enter your name");
-        String name=br.readLine();
-        System.out.println("Welcome "+name);
+        Scanner sc = new Scanner(System.in);
+        int userChoice;
+
+        System.out.println("Please enter a sentence:" );
+        String userInput = sc.nextLine();
 
     }
 
