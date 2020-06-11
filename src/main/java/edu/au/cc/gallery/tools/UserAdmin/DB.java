@@ -53,6 +53,8 @@ public class DB {
 
 	public static void listUsers() throws SQLException {
 		System.out.println("i got this far");
+		DB db = new DB();
+		db.connect();
 
 
 		PreparedStatement stmt = connection.prepareStatement("select * from users");
