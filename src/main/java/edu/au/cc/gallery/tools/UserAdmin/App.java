@@ -41,18 +41,25 @@ public class App {
 
         int result = 0;
 
-        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String input = null;
+
+
 
         try {
-            int inputInteger = Integer.parseInt(input.readLine());
 
-            if (result > 0 && result < 6) {
-                switcher(inputInteger);
-            } else {
-                System.out.println("Invalid Command. Please try again.\n\n");
-                menu();
-                command();
+            while ((input = br.readLine()) != null)) {
+                int inputInteger = Integer.parseInt(input);
+                if (result > 0 && result < 6) {
+                    switcher(inputInteger);
+                } else {
+                    System.out.println("Invalid Command. Please try again.\n\n");
+                    menu();
+                    command();
+                }
             }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
