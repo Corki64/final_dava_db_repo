@@ -51,7 +51,7 @@ public class DB {
 	}
 
 
-	public static void listUsers() throws SQLException {
+	public void listUsers() throws SQLException {
 		PreparedStatement stmt = connection.prepareStatement("select * from users");
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
