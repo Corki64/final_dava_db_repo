@@ -53,9 +53,15 @@ public class App {
         System.out.println("Name: ");
         try{
             BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-            String inputString = bufferRead.readLine();
 
-            System.out.println("Name entered : " + inputString);
+
+            String inputString;
+
+            while ((inputString = bufferRead.readLine()) != null) {
+                System.out.println("Name entered : " + inputString);
+
+            }
+
         }
         catch(IOException ex)
         {
