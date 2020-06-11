@@ -37,29 +37,43 @@ public class App {
         System.out.print("Enter command :> ");
     }
 
-    private static void command() throws NoSuchElementException, IOException {
+    private static void command() throws NoSuchElementException {
 
         int result = 0;
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String inputString = br.readLine();
-
-
-        while (inputString != null) {
-            int inputInteger = Integer.parseInt(inputString);
-            if (result > 0 && result < 6) {
-                switcher(inputInteger);
-            } else {
-                System.out.println("Invalid Command. Please try again.\n\n");
-                menu();
-                command();
-            }
+        String inputString = null;
+        try {
+            inputString = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 
-        //        Scanner input = new Scanner(System.in);
+        try {
+
+            while (inputString != null) {
+                int inputInteger = Integer.parseInt(inputString);
+                if (result > 0 && result < 6) {
+                    switcher(inputInteger);
+                } else {
+                    System.out.println("Invalid Command. Please try again.\n\n");
+                    menu();
+                    command();
+                }
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        Scanner input = new Scanner(System.in);
 //        String line = input.nextLine();
 //        result = input.nextInt();
+
+
+
     }
 
     private static void switcher(int choiceIn) {
