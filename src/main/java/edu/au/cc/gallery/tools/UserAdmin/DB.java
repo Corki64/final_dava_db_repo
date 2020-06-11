@@ -88,6 +88,7 @@ public class DB {
 		DB db = new DB();
 		db.connect();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		listUsers();
 		System.out.print("Please enter the preferred name of the user :>");
 		String prefName = br.readLine();
 
@@ -102,29 +103,29 @@ public class DB {
 		rs.close();
 		System.out.println(prefNameEdit + " | " + passWordEdit + " | "+ fullNameEdit);
 
-		String editOption = "";
+		int editOption = 0;
 
-		while (editOption != null) {
+		while (editOption != 4) {
 			System.out.println("1 ) Preferred Name");
 			System.out.println("2 ) Password");
 			System.out.println("3 ) Full Name");
 			System.out.println("4 ) Done Editing");
 			System.out.println("Please select the field to edit :> ");
-			editOption = br.readLine();
+			editOption = Integer.parseInt(br.readLine());
 
-			if (editOption.equals("1")) {
+			if (editOption == 1) {
 				System.out.println("Current preferred name :>" + prefNameEdit);
 				System.out.print("Please enter new preferred name :> ");
 				prefNameEdit = br.readLine();
-			} else if (editOption.equals("2")) {
+			} else if (editOption == 2) {
 				System.out.println("Current password :> " + passWordEdit);
 				System.out.print("Please enter new password :> ");
 				passWordEdit = br.readLine();
-			} else if (editOption.equals("3")) {
+			} else if (editOption == 3) {
 				System.out.print("Current full name :>" + fullNameEdit);
 				fullNameEdit = br.readLine();
 			} else {
-				editOption = null;
+				editOption = 4;
 			}
 		}
 		Statement updateStmt = connection.createStatement();
