@@ -35,58 +35,20 @@ public class App {
         System.out.println("4)  Delete User");
         System.out.println("5)  Quit");
         System.out.print("Enter command :> ");
-
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//
-//        var input = 0;
-//
-//        while (br.)
-//
-//        Integer.parseInt(br.readLine());
-//
-//
-//
-////        int input = Integer.parseInt(br.readLine());
-//
-//        System.out.println("marker ::=" + input);
-
-        String word = "";
-        System.out.println("please enter a something");
-        Scanner scan = new Scanner(System.in);
-        if (scan.hasNextLine()) {
-            word = scan.nextLine();
-        }
-
     }
 
     private static void command() throws NoSuchElementException, IOException {
 
-        int result = 0;
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String inputString = null;
-        try {
-            inputString = br.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
+        int input = Integer.parseInt(br.readLine());
+
+        if (input > 0 && input < 7) {
+            switcher(input);
+        } else {
+            System.out.println("Not a valid menu option.");
+            menu();
+            command();
         }
-
-
-        while (inputString != null) {
-            int inputInteger = Integer.parseInt(inputString);
-            if (result > 0 && result < 6) {
-                switcher(inputInteger);
-            } else {
-                System.out.println("Invalid Command. Please try again.\n\n");
-                menu();
-                command();
-            }
-        }
-
-
-        //        Scanner input = new Scanner(System.in);
-//        String line = input.nextLine();
-//        result = input.nextInt();
 
 
 
@@ -106,9 +68,6 @@ public class App {
 
 
         } else if (choiceIn == 2 || choiceIn == 3 || choiceIn == 4 || choiceIn == 5) {
-        } else if (choiceIn == 2 || choiceIn == 3 || choiceIn == 4 || choiceIn == 5) {
-
-
             System.exit(0);
         }
     }
