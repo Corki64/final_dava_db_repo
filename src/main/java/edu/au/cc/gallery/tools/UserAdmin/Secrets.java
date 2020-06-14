@@ -7,9 +7,7 @@ import software.amazon.awssdk.services.secretsmanager.model.*;
 
 import java.security.InvalidParameterException;
 
-
 public class Secrets {
-
 
     // Use this code snippet in your app.
     // If you need more information about configurations or implementing the sample code, visit the AWS docs:
@@ -61,9 +59,4 @@ public class Secrets {
 
         return getSecretValueResult.secretString();
     }
-
-
-
-
-
 }
