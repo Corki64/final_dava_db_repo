@@ -167,24 +167,6 @@ public class DB {
 	}
 
 
-
-	private String getPassword(JSObject secret) {
-		return secret.getString("password");
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	public void close() throws SQLException {
 		connection.close();
 	}
