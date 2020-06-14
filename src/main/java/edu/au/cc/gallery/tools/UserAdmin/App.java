@@ -6,21 +6,18 @@ package edu.au.cc.gallery.tools.UserAdmin;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.InetAddress;
-import java.nio.Buffer;
+
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) throws Exception {
-//        System.out.println(new App().getGreeting());
+//            System.out.println(new App().getGreeting());
         menu();
         command();
 
 
-//	DB.demo();
-//	DB.listUsers();
+
 
     }
 
