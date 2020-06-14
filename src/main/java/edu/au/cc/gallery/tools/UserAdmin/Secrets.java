@@ -6,7 +6,7 @@ import software.amazon.awssdk.services.secretsmanager.*;
 import software.amazon.awssdk.services.secretsmanager.model.*;
 
 import java.security.InvalidParameterException;
-import java.util.Base64;
+
 
 public class Secrets {
 

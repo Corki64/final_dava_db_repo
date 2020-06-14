@@ -1,12 +1,8 @@
 package edu.au.cc.gallery.tools.UserAdmin;
 
-
-
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,10 +18,7 @@ import org.json.JSONObject;
 public class DB {
 	private static final String dbURL = "jdbc:postgresql://java-db.cqxj5v5xjbzr.us-east-2.rds.amazonaws.com/name_list";
 
-
         public static Connection connection;
-
-
 
 	private JSONObject getSecret() {
 		String s = Secrets.getSecretImageGallery();
@@ -36,20 +29,6 @@ public class DB {
 		return secret.getString("password");
 	}
 
-
-
-//	private String getPassword() {
-//		try(BufferedReader br = new BufferedReader(new FileReader("/home/ec2-user/.sql-passwd"))) {
-//		String result = br.readLine();
-//		return result;
-//	} catch (IOException ex) {
-//		ex.printStackTrace();
-//		System.exit(1);
-//		}
-//	return null;
-//	}
-
-
 	public void connect() throws SQLException {
 		try {
 			JSONObject secret = getSecret();
@@ -58,10 +37,7 @@ public class DB {
 			ex.printStackTrace();
 			System.exit(1);
 		}
-
-
 	}
-
 
 	public static void demo() throws Exception {
 		DB db = new DB();
@@ -69,11 +45,9 @@ public class DB {
 		System.out.println("Connection Established.");
 	}
 
-
 	public static void listUsers() throws SQLException {
 		DB db = new DB();
 		db.connect();
-
 
 		PreparedStatement stmt = connection.prepareStatement("select * from users");
 		ResultSet rs = stmt.executeQuery();
@@ -91,17 +65,16 @@ public class DB {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		System.out.print("Please enter the preferred name of the user :> ");
-		String prefName = br.readLine();
+		String user_name = br.readLine();
 		System.out.print("Please enter the password for user :> ");
 		String password = br.readLine();
 		System.out.print("Please enter user full name :> ");
-		String fullName = br.readLine();
+		String full_name = br.readLine();
 
 		Statement stmt = connection.createStatement();
-		stmt.executeUpdate("INSERT into users values ('" + prefName + "', '" + password + "', '" + fullName + "')");
+		stmt.executeUpdate("INSERT into users values ('" + user_name + "', '" + password + "', '" + full_name + "')");
 		db.close();
 	}
-
 
 	public static void editUser() throws SQLException, IOException {
 		DB db = new DB();
@@ -121,7 +94,6 @@ public class DB {
 		}
 		rs.close();
 		System.out.println(prefNameEdit + " | " + passWordEdit + " | "+ fullNameEdit);
-
 		int editOption = 0;
 
 		while (editOption != 4) {
@@ -166,13 +138,9 @@ public class DB {
 		db.close();
 	}
 
-
 	public void close() throws SQLException {
 		connection.close();
 	}
-
-
-
 }
 
 
