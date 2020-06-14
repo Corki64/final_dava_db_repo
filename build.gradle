@@ -23,15 +23,20 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
-
+    implementation platform('software.amazon.awssdk:bom:2.13.20')
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.12'
-
+    implementation 'software.amazon.awssdk:secretsmanager'
+    implementation group: 'org.json', name: 'json', version: '20200518'
 }
 
 application {
     // Define the main class for the application.
     mainClassName = 'edu.au.cc.gallery.tools.UserAdmin.App'
+}
+
+run {
+	standardInput = System.in
 }
