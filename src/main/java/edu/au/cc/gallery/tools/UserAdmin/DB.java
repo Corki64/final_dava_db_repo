@@ -11,12 +11,13 @@ public class DB {
 	private static final String dbURL = "jdbc:postgresql://image-gallery.cqxj5v5xjbzr.us-east-2.rds.amazonaws.com/image_gallery";
 	public static Connection connection;
 
-
+	String secretID = "admins";
 
 
 
 	private JSONObject getSecret() {
-		String s = Secrets.getSecretImageGallery();
+		Secrets obj = new Secrets();
+		String s = obj.getSecretString(secretID);
 		return new JSONObject(s);
 	}
 
