@@ -1,25 +1,19 @@
 package edu.au.cc.gallery.tools.UserAdmin;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
+import java.sql.*;
 
 public class DB {
 	private static final String dbURL = "jdbc:postgresql://image-gallery.cqxj5v5xjbzr.us-east-2.rds.amazonaws.com/image_gallery";
+	public static Connection connection;
 
-        public static Connection connection;
+
+
+
 
 	private JSONObject getSecret() {
 		String s = Secrets.getSecretImageGallery();
@@ -32,13 +26,15 @@ public class DB {
 
 	public void connect() throws SQLException {
 		try {
+			Class.forName("org.postgresql.Driver");
 			JSONObject secret = getSecret();
 			connection = DriverManager.getConnection(dbURL, "admins", getPassword(secret));
-		} catch (SQLException ex) {
-			ex.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 			System.exit(1);
 		}
 	}
+
 
 	public static void listUsers() throws SQLException {
 		DB db = new DB();
@@ -138,64 +134,5 @@ public class DB {
 	}
 }
 
-
-//// Use this code snippet in your app.
-//// If you need more information about configurations or implementing the sample code, visit the AWS docs:
-//// https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-samples.html#prerequisites
-//
-//	public static void getSecret() {
-//
-//		String secretName = "sec-image-gallery-user-admin";
-//		String region = "us-east-2";
-//
-//		// Create a Secrets Manager client
-//		AWSSecretsManager client  = AWSSecretsManagerClientBuilder.standard()
-//				.withRegion(region)
-//				.build();
-//
-//		// In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
-//		// See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
-//		// We rethrow the exception by default.
-//
-//		String secret, decodedBinarySecret;
-//		GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest()
-//				.withSecretId(secretName);
-//		GetSecretValueResult getSecretValueResult = null;
-//
-//		try {
-//			getSecretValueResult = client.getSecretValue(getSecretValueRequest);
-//		} catch (DecryptionFailureException e) {
-//			// Secrets Manager can't decrypt the protected secret text using the provided KMS key.
-//			// Deal with the exception here, and/or rethrow at your discretion.
-//			throw e;
-//		} catch (InternalServiceErrorException e) {
-//			// An error occurred on the server side.
-//			// Deal with the exception here, and/or rethrow at your discretion.
-//			throw e;
-//		} catch (InvalidParameterException e) {
-//			// You provided an invalid value for a parameter.
-//			// Deal with the exception here, and/or rethrow at your discretion.
-//			throw e;
-//		} catch (InvalidRequestException e) {
-//			// You provided a parameter value that is not valid for the current state of the resource.
-//			// Deal with the exception here, and/or rethrow at your discretion.
-//			throw e;
-//		} catch (ResourceNotFoundException e) {
-//			// We can't find the resource that you asked for.
-//			// Deal with the exception here, and/or rethrow at your discretion.
-//			throw e;
-//		}
-//
-//		// Decrypts secret using the associated KMS CMK.
-//		// Depending on whether the secret is a string or binary, one of these fields will be populated.
-//		if (getSecretValueResult.getSecretString() != null) {
-//			secret = getSecretValueResult.getSecretString();
-//		}
-//		else {
-//			decodedBinarySecret = new String(Base64.getDecoder().decode(getSecretValueResult.getSecretBinary()).array());
-//		}
-//
-//		// Your code goes here.
-//	}
 
 

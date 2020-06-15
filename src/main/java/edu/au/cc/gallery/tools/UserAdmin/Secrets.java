@@ -1,8 +1,7 @@
 package edu.au.cc.gallery.tools.UserAdmin;
 
 import software.amazon.awssdk.regions.Region;
-
-import software.amazon.awssdk.services.secretsmanager.*;
+import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
 import software.amazon.awssdk.services.secretsmanager.model.*;
 
 import java.security.InvalidParameterException;
@@ -18,6 +17,7 @@ public class Secrets {
         String secretName = "postgres-fire";
         Region region = Region.US_EAST_2;
 
+
         // Create a Secrets Manager client
         SecretsManagerClient client = SecretsManagerClient.builder()
                 .region(region)
@@ -26,6 +26,7 @@ public class Secrets {
         // In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
         // See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
         // We rethrow the exception by default.
+
 
         String secret, decodedBinarySecret;
         GetSecretValueRequest getSecretValueRequest = GetSecretValueRequest.builder()
@@ -56,7 +57,6 @@ public class Secrets {
             // Deal with the exception here, and/or rethrow at your discretion.
             throw e;
         }
-
         return getSecretValueResult.secretString();
     }
 }
