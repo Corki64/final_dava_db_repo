@@ -15,7 +15,7 @@ public class Secrets {
 
     public static String getSecretImageGallery() {
 
-        String secretName = "sec-image-gallery-user-admin";
+        String secretName = "postgres-fire";
         Region region = Region.US_EAST_2;
 
         // Create a Secrets Manager client
