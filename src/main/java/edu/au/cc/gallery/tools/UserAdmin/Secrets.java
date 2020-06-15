@@ -5,9 +5,12 @@ import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
 import software.amazon.awssdk.services.secretsmanager.model.*;
 
 import java.security.InvalidParameterException;
-import java.util.Base64;
+
 
 public class Secrets {
+
+
+
 
     // Use this code snippet in your app.
     // If you need more information about configurations or implementing the sample code, visit the AWS docs:
@@ -20,14 +23,13 @@ public class Secrets {
 
 
         // Create a Secrets Manager client
-        SecretsManagerClient client = SecretsManagerClient.builder()
+        SecretsManagerClient client  = SecretsManagerClient.builder()
                 .region(region)
                 .build();
 
         // In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
         // See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
         // We rethrow the exception by default.
-
 
         String secret, decodedBinarySecret;
         GetSecretValueRequest getSecretValueRequest = GetSecretValueRequest.builder()
@@ -58,7 +60,12 @@ public class Secrets {
             // Deal with the exception here, and/or rethrow at your discretion.
             throw e;
         }
+
+        // Decrypts secret using the associated KMS CMK.
+        // Depending on whether the secret is a string or binary, one of these fields will be populated.
         return getSecretValueResult.secretString();
+
+        // Your code goes here.
     }
 }
 
