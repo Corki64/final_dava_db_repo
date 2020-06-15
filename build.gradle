@@ -26,6 +26,11 @@ dependencies {
     implementation 'software.amazon.awssdk:s3'
     implementation 'software.amazon.awssdk:secretsmanager'
 
+    // https://mvnrepository.com/artifact/com.amazonaws.secretsmanager/aws-secretsmanager-jdbc
+    implementation group: 'com.amazonaws.secretsmanager', name: 'aws-secretsmanager-jdbc', version: '1.0.5'
+
+
+
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'
     
