@@ -18,7 +18,7 @@ public class Secrets {
 
     public static String getSecretImageGallery() {
 
-        String secretName = "admins-star";
+        String secretName = "admins";
         Region region = Region.US_EAST_2;
 
 
