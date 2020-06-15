@@ -19,7 +19,7 @@ public class Secrets {
         Region region = Region.US_EAST_2;
 
         // Create a Secrets Manager client
-        SecretsManagerClient client  = SecretsManagerClient.builder()
+        SecretsManagerClient client = SecretsManagerClient.builder()
                 .region(region)
                 .build();
 

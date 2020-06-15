@@ -40,12 +40,6 @@ public class DB {
 		}
 	}
 
-	public static void demo() throws Exception {
-		DB db = new DB();
-		db.connect();
-		System.out.println("Connection Established.");
-	}
-
 	public static void listUsers() throws SQLException {
 		DB db = new DB();
 		db.connect();
