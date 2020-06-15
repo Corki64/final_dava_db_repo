@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import edu.au.cc.gallery.tools.UserAdmin.Secrets;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,7 +33,7 @@ public class DB {
 	public void connect() throws SQLException {
 		try {
 			JSONObject secret = getSecret();
-			connection = DriverManager.getConnection(dbURL, "admin", getPassword(secret));
+			connection = DriverManager.getConnection(dbURL, "admins", getPassword(secret));
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			System.exit(1);
