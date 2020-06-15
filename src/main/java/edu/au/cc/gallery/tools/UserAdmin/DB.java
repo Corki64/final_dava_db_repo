@@ -17,7 +17,7 @@ import org.json.JSONObject;
 
 
 public class DB {
-	private static final String dbURL = "jdbc:postgresql://java-db.cqxj5v5xjbzr.us-east-2.rds.amazonaws.com/name_list";
+	private static final String dbURL = "jdbc:postgresql://image-gallery.cqxj5v5xjbzr.us-east-2.rds.amazonaws.com/image_gallery";
 
         public static Connection connection;
 
