@@ -146,6 +146,7 @@ public class DB {
 	}
 
 	public static void greeting() throws Exception {
+		port(5000);
 		get("/hello", (req, res) -> "Hello World");
 	}
 
