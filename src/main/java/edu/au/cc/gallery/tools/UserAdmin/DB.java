@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.*;
 
+import static spark.Spark.*;
+
 public class DB {
 	private static final String dbURL = "jdbc:postgresql://image-gallery.cqxj5v5xjbzr.us-east-2.rds.amazonaws.com/image_gallery";
 	public static Connection connection;
@@ -107,6 +109,8 @@ public class DB {
 			} else if (editOption == 3) {
 				System.out.print("Current full name :>" + fullNameEdit);
 				fullNameEdit = br.readLine();
+			} else if (editOption == 9) {
+
 			} else {
 				editOption = 4;
 			}
@@ -133,6 +137,20 @@ public class DB {
 	public void close() throws SQLException {
 		connection.close();
 	}
+
+
+
+
+	public String getGreeting() {
+		return "hello Lui";
+	}
+
+	public static void greeting() throws Exception {
+		get("/hello", (req, res) -> "Hello World");
+	}
+
+
+
 }
 
 
