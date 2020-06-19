@@ -118,8 +118,6 @@ public class DB {
 			} else if (editOption == 3) {
 				System.out.print("Current full name :>" + fullNameEdit);
 				fullNameEdit = br.readLine();
-			} else if (editOption == 9) {
-
 			} else {
 				editOption = 4;
 			}
@@ -170,14 +168,6 @@ public class DB {
 		db.close();
 	}
 
-
-
-	// public ResultSet prepStatement(String statementIn) throws SQLException {
-	// 	PreparedStatement stmt = connection.prepareStatement(statementIn);
-	// 	ResultSet rs = stmt.executeQuery();
-	// 	return rs;
-	// }
-
 	public static ArrayList<String> getUserNames() throws SQLException {
 		ArrayList<String> userNames = new ArrayList<>();
 		DB db = new DB();
@@ -192,32 +182,13 @@ public class DB {
 		return userNames;
 	}
 
-	public ResultSet executeWithValues(String query, String[] values) throws SQLException {
-		PreparedStatement stmt = connection.prepareStatement(query);
-		for (int i = 0; i < values.length; i++) {
-			 stmt.setString(i + 1, values[i]);
-		}
-		ResultSet rs = stmt.executeQuery();
-		return rs;
-  }
-
-   //    public void execute(String query, String[] values) throws SQLException {
-   //      PreparedStatement stmt = connection.prepareStatement(query);
-   //      for (int i = 0; i < values.length; i++) {
-   //          stmt.setString(i + 1, values[i]);
-   //      }
-   //      stmt.execute();
-	//  }
-	
-
-	   	public void close() throws SQLException {
+	public void close() throws SQLException {
 		connection.close();
    }
-   
+
    public ResultSet prepStatement(String statementIn) throws SQLException {
 		PreparedStatement stmt = connection.prepareStatement(statementIn);
-		ResultSet rs = stmt.executeQuery();
-		return rs;
+	   return stmt.executeQuery();
    }
    
    public void execute(String query, String[] values) throws SQLException {
@@ -227,7 +198,6 @@ public class DB {
       }
       stmt.execute();
   }
-
 
 }
 

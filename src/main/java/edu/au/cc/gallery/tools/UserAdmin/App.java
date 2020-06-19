@@ -4,11 +4,6 @@
 package edu.au.cc.gallery.tools.UserAdmin;
 
 import static spark.Spark.*;
-
-
-
-
-
 public class App {
     public static void main(String[] args) throws Exception {     
 

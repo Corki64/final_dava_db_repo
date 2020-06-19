@@ -15,25 +15,25 @@ import spark.ModelAndView;
 public class User {
 
    public String adminPage(Request requestIn, Response responseIn) throws SQLException {
-      Map<String, Object> model = new HashMap<String, Object>();
+      Map<String, Object> model = new HashMap<>();
       ArrayList<String> userName = DB.getUserNames();
       model.put("users", userName);
       return new HandlebarsTemplateEngine().render(new ModelAndView(model, "admin.hbs"));
    }
 
    public String addUserPage(Request req, Response res) {
-      Map<String, Object> model = new HashMap<String, Object>();
+      Map<String, Object> model = new HashMap<>();
       return new HandlebarsTemplateEngine().render(new ModelAndView(model, "addUser.hbs"));
    }
 
    public String deleteUserPage(Request req, Response res) throws Exception {
-      Map<String, Object> model = new HashMap<String, Object>();
+      Map<String, Object> model = new HashMap<>();
       model.put("user", req.params(":user"));
       return new HandlebarsTemplateEngine().render(new ModelAndView(model, "deleteUser.hbs"));
    }
 
    public String modifyUserPage(Request req, Response res) throws Exception {
-      Map<String, Object> model = new HashMap<String, Object>();
+      Map<String, Object> model = new HashMap<>();
       model.put("user", req.params(":user"));
       return new HandlebarsTemplateEngine().render(new ModelAndView(model, "modifyUser.hbs"));
    }
@@ -67,7 +67,7 @@ public class User {
    }
 
    private String toHome() throws SQLException {
-      Map<String, Object> model = new HashMap<String, Object>();
+      Map<String, Object> model = new HashMap<>();
       ArrayList<String> userName = DB.getUserNames();
       model.put("users", userName);
       return new HandlebarsTemplateEngine().render(new ModelAndView(model, "admin.hbs"));

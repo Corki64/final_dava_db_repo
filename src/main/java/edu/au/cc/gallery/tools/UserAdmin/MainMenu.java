@@ -26,7 +26,7 @@ public class MainMenu {
          switcher(input);
       } else {
          System.out.println("Not a valid menu option.");
-         MainMenu.menu();
+         menu();
          command();
       }
    }
