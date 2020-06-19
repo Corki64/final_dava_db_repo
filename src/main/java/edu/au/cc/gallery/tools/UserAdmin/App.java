@@ -7,6 +7,6 @@ package edu.au.cc.gallery.tools.UserAdmin;
 public class App {
     public static void main(String[] args) throws Exception {        
         //MainMenu.menu();
-        S3.demo();
+        // S3.demo();
     }
 }
