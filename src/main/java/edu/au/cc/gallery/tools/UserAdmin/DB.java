@@ -15,8 +15,6 @@ public class DB {
 
 	String secretID = "admins";
 
-
-
 	private JSONObject getSecret() {
 		Secrets obj = new Secrets();
 		String s = obj.getSecretString(secretID);
