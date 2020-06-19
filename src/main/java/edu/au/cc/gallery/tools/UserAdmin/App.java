@@ -3,10 +3,20 @@
  */
 package edu.au.cc.gallery.tools.UserAdmin;
 
+import static spark.Spark.*;
+
+
+
+
 
 public class App {
-    public static void main(String[] args) throws Exception {        
-        //MainMenu.menu();
+    public static void main(String[] args) throws Exception {     
+
+            port(5000);
+            new User().addRoutes();
+        
+        
+        // MainMenu.menu();
         // S3.demo();
     }
 }

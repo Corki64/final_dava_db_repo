@@ -1,13 +1,14 @@
 package edu.au.cc.gallery.tools.UserAdmin;
 
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.*;
+import java.util.ArrayList;
 
-import static spark.Spark.*;
+import org.json.JSONObject;
+
+import java.sql.SQLException;
 
 public class DB {
 	private static final String dbURL = "jdbc:postgresql://image-gallery.cqxj5v5xjbzr.us-east-2.rds.amazonaws.com/image_gallery";
@@ -36,7 +37,6 @@ public class DB {
 		}
 	}
 
-
 	public static void listUsers() throws SQLException {
 		DB db = new DB();
 		db.connect();
@@ -45,11 +45,22 @@ public class DB {
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
 			System.out.println(rs.getString(1) + " | " + rs.getString(2) + " | "
+
 					+ rs.getString(3));
-		}
-		rs.close();
+					rs.close();
+				}
 		db.close();
 	}
+
+	public static void addUser(String prefName, String passWord, String fullName) throws SQLException {
+		DB db = new DB();
+		db.connect();
+
+		Statement stmt = connection.createStatement();
+		stmt.executeUpdate("INSERT into users values ('" + prefName + "', '" + passWord + "', '" + fullName + "')");
+		db.close();
+
+   }
 
 	public static void addUser() throws SQLException, IOException {
 		DB db = new DB();
@@ -119,6 +130,33 @@ public class DB {
 		db.close();
 	}
 
+	public static void updateUser(String username, String password, String fullName) throws Exception {
+		DB db = new DB();
+		db.connect();
+		try {
+			 if (password != null && !password.isEmpty()) {
+
+				  db.execute("update users set password=? where username=?",
+							 new String[]{password, username});
+			 }
+			 if (fullName != null && !fullName.isEmpty()) {
+				  db.execute("update users set full_name=? where username=?",
+							 new String[]{fullName, username});
+			 }
+		} catch (Exception e) {
+			 System.out.println("Something went wrong. ");
+		}
+		db.close();
+  }
+
+	public static void deleteUser(String userIn) throws SQLException {
+		DB db = new DB();
+		db.connect();
+		Statement deleteStmt = connection.createStatement();
+		deleteStmt.executeUpdate("delete from users where user_name = '" + userIn + "'");
+		db.close();
+	}
+
 	public static void deleteUser() throws SQLException, IOException {
 		listUsers();
 		DB db = new DB();
@@ -132,22 +170,63 @@ public class DB {
 		db.close();
 	}
 
-	public void close() throws SQLException {
+
+
+	// public ResultSet prepStatement(String statementIn) throws SQLException {
+	// 	PreparedStatement stmt = connection.prepareStatement(statementIn);
+	// 	ResultSet rs = stmt.executeQuery();
+	// 	return rs;
+	// }
+
+	public static ArrayList<String> getUserNames() throws SQLException {
+		ArrayList<String> userNames = new ArrayList<>();
+		DB db = new DB();
+		db.connect();
+
+		ResultSet rs = db.prepStatement("select user_name from users");
+		while (rs.next()) {
+			userNames.add(rs.getString(1));			
+		}
+		rs.close();
+		db.close();
+		return userNames;
+	}
+
+	public ResultSet executeWithValues(String query, String[] values) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement(query);
+		for (int i = 0; i < values.length; i++) {
+			 stmt.setString(i + 1, values[i]);
+		}
+		ResultSet rs = stmt.executeQuery();
+		return rs;
+  }
+
+   //    public void execute(String query, String[] values) throws SQLException {
+   //      PreparedStatement stmt = connection.prepareStatement(query);
+   //      for (int i = 0; i < values.length; i++) {
+   //          stmt.setString(i + 1, values[i]);
+   //      }
+   //      stmt.execute();
+	//  }
+	
+
+	   	public void close() throws SQLException {
 		connection.close();
-	}
-
-
-
-
-	public String getGreeting() {
-		return "hello Lui";
-	}
-
-	public static void greeting() throws Exception {
-		port(5000);
-		get("/hello", (req, res) -> "Hello World");
-	}
-
+   }
+   
+   public ResultSet prepStatement(String statementIn) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement(statementIn);
+		ResultSet rs = stmt.executeQuery();
+		return rs;
+   }
+   
+   public void execute(String query, String[] values) throws SQLException {
+      PreparedStatement stmt = connection.prepareStatement(query);
+      for (int i = 0; i < values.length; i++) {
+          stmt.setString(i + 1, values[i]);
+      }
+      stmt.execute();
+  }
 
 
 }
