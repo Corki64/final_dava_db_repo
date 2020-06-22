@@ -4,13 +4,18 @@
 package edu.au.cc.gallery.tools.UserAdmin;
 
 import static spark.Spark.*;
-public class App {
-    public static void main(String[] args) throws Exception {     
 
+public class App {
+    public static void main(String[] args) throws Exception {
+        String portString = System.getenv("JETTY_PORT");
+
+        if (portString == null || portString.equals("")) {
             port(5000);
-            new User().addRoutes();
-        
-        
+        } else {
+            port(Integer.parseInt(portString));
+        }
+        new User().addRoutes();
+
         // MainMenu.menu();
         // S3.demo();
     }
