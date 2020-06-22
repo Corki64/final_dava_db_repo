@@ -5,7 +5,7 @@ yum -y update
 amazon-linux-extras install -y java-openjdk11
 amazon-linux-extras install -y nginx1
 yum install -y java-11-openjdk-devel git
-su ec2-user -l -c 'curl -s "https://get.sdkman.io" | bash && source .bashrc && sdk install gradle'
+su ec2-user -l -c 'curl -s "https://get.sdkman.io" | bash && source .bashrc && sdk install gradle 6.5'
 
 # Configure/install custom software
 cd /home/ec2-user
